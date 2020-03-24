@@ -18,13 +18,21 @@ namespace DataqSDKCS
 
         private void button1_Click(object sender, EventArgs e)
         {
+            short[] slist = new short[8];
+
             axDataqSdk1.DeviceDriver=textBox1.Text;
 
             axDataqSdk1.DeviceID=textBox2.Text;
 
+            axDataqSdk1.ADChannelCount = 2;
+
+            slist[0] = 0; 
+            slist[1] = 1;
+
+            axDataqSdk1.ADChannelList(slist);
 
             axDataqSdk1.SampleRate=Convert.ToDouble(textBox3.Text);
-
+            
             axDataqSdk1.EventPoint=1;
 
             timer1.Interval=10;
@@ -55,6 +63,7 @@ namespace DataqSDKCS
                 
                 intArray = (short[,])V;
                 label4.Text = intArray[0, 0].ToString();
+                label6.Text = intArray[1, 0].ToString();
             }
 
         }
@@ -78,6 +87,11 @@ namespace DataqSDKCS
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
